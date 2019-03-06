@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jwplayer test</title>
+	<script type="text/javascript" src="https://www.trendmicro.com/content/dam/trendmicro/global/core-library/jwplayer.js"></script>
+	<script>jwplayer.key="sXpIBdPeKzI9PC2p0SWMpUSM2NSxWzPyXTMLlbXmYa0R20xk"</script>
+</head>
+<body>
+	<style>
+		#pause_overlay {
+			width: 628px;
+			height: 300px;
+			position: absolute;
+			left: 14px;
+			top: 12px;
+			// background: red;
+			opacity: 100;
+		}
+
+		.hidden {
+			display:none;
+		}
+		
+		#pause_overlay h1{
+			font-size: 20px;
+			font-weight: bold;
+			color:#fff;
+		}
+		
+		#pause_overlay h2{
+			font-size: 16px;
+			font-weight: bold;
+			color:#fff;
+		}
+	</style>
+
+	<div id="myDiv">This text will be replaced with a player.</div>
+	
+	<div id="pause_overlay" class="hidden"></div>
+	
+	<script>
+		jwplayer("myDiv").setup({
+			"file": "http://www.trendmicro.com/content/dam/trendmicro/global/en/about/customer-stories/carhartt/video_Carhartt.mp4",
+			"image": "https://www.trendmicro.com/content/dam/trendmicro/global/en/about/customer-stories/carhartt/thumb_video-Carhartt.jpg",
+			"height": 360,
+			"width": 640
+		});
+
+		jwplayer().on('pause', function(){
+	
+			var pause_overlay = document.getElementById("pause_overlay");
+			
+			pause_overlay.innerHTML = "<center><h1>Hybrid Cloud Security</h1><h2>from Trend Micro</h2></center>";
+			pause_overlay.classList.remove("hidden");
+		});
+		
+		jwplayer().on('play', function(){
+			
+			var pause_overlay = document.getElementById("pause_overlay");
+			pause_overlay.classList.add("hidden");
+		});
+		
+		jwplayer().on('beforeComplete', function(){
+			
+			// alert("before complete...");
+		});
+	</script>
+</body>
+</html>
